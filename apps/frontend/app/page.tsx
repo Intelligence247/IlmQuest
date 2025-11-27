@@ -6,7 +6,7 @@ import { Sparkles, Shield, BookOpen } from "lucide-react"
 import { useWallet } from "@/lib/wallet-context"
 import { ConnectButton } from "@/components/wallet/connect-button"
 import { LogoIcon } from "@/components/brand/logo"
-
+import Image from "next/image"
 function LandingContent() {
   const { isConnected } = useWallet()
   const router = useRouter()
@@ -23,7 +23,8 @@ function LandingContent() {
       <div className="flex-1 flex flex-col items-center justify-center px-6 py-12">
         <div className="text-center mb-8 animate-pop">
           <div className="w-24 h-24 mx-auto mb-4 animate-float">
-            <LogoIcon className="w-24 h-24 drop-shadow-lg" />
+            {/* <LogoIcon className="w-24 h-24 drop-shadow-lg" /> */}
+            <Image src="/icon-dark-32x32.jpg" alt="IlmQuest" width={96} height={96} />
           </div>
           <h1 className="font-heading text-4xl font-bold text-brand-primary tracking-tight">IlmQuest</h1>
           <p className="mt-2 text-lg text-ui-muted font-medium">Learn Crypto. Earn Crypto.</p>

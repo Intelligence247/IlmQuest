@@ -20,15 +20,15 @@ export const metadata: Metadata = {
   title: "IlmQuest - Learn Crypto. Earn Crypto.",
   description:
     "A mobile-first Learn-to-Earn dApp. Play memory games about financial literacy and earn cUSD rewards on the Celo network.",
-  generator: "v0.app",
+  generator: "IlmQuest",
   icons: {
     icon: [
       {
-        url: "/icon-light-32x32.png",
+        url: "/icon-light-32x32.jpg",
         media: "(prefers-color-scheme: light)",
       },
       {
-        url: "/icon-dark-32x32.png",
+        url: "/icon-dark-32x32.jpg",
         media: "(prefers-color-scheme: dark)",
       },
       {
@@ -36,7 +36,7 @@ export const metadata: Metadata = {
         type: "image/svg+xml",
       },
     ],
-    apple: "/apple-icon.png",
+    apple: "/icon-dark-32x32.jpg",
   },
 }
 
