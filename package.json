@@ -1,7 +1,7 @@
 {
-  "name": "minipay-hack-tutorMint",
+  "name": "IlmQuest",
   "version": "0.1.0",
-  "description": "tutorMint for connecting tutor and student",
+  "description": "Lear-to-earn platform for students to earn rewards for learning",
   "private": true,
   "scripts": {
     "build": "turbo build",

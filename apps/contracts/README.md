@@ -1,6 +1,6 @@
-# minipay-hack-tutorMint - Smart Contracts
+# IlmQuest - Smart Contracts
 
-This directory contains the smart contracts for minipay-hack-tutorMint, built with Hardhat and optimized for the Celo blockchain.
+This directory contains the smart contracts for IlmQuest, built with Hardhat and optimized for the Celo blockchain.
 
 ## 🚀 Quick Start
 

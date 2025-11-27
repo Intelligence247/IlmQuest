@@ -1,0 +1,56 @@
+<svg width="512" height="512" viewBox="0 0 512 512" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <!-- Background Circle with gradient -->
+  <defs>
+    <linearGradient id="bgGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#047857"/>
+      <stop offset="100%" style="stop-color:#115E59"/>
+    </linearGradient>
+    <linearGradient id="goldGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#FBBF24"/>
+      <stop offset="100%" style="stop-color:#F59E0B"/>
+    </linearGradient>
+    <linearGradient id="lightGradient" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#10B981"/>
+      <stop offset="100%" style="stop-color:#047857"/>
+    </linearGradient>
+  </defs>
+  
+  <!-- Main circle background -->
+  <circle cx="256" cy="256" r="240" fill="url(#bgGradient)"/>
+  
+  <!-- Decorative ring -->
+  <circle cx="256" cy="256" r="220" fill="none" stroke="url(#goldGradient)" stroke-width="3" opacity="0.4"/>
+  
+  <!-- Open book shape - left page -->
+  <path d="M256 160 L256 352 Q200 340 144 352 L144 168 Q200 156 256 160 Z" fill="white" opacity="0.95"/>
+  
+  <!-- Open book shape - right page -->
+  <path d="M256 160 L256 352 Q312 340 368 352 L368 168 Q312 156 256 160 Z" fill="white" opacity="0.9"/>
+  
+  <!-- Book spine highlight -->
+  <path d="M256 160 L256 352" stroke="url(#lightGradient)" stroke-width="4" stroke-linecap="round"/>
+  
+  <!-- Knowledge lines on left page -->
+  <line x1="168" y1="200" x2="232" y2="200" stroke="#047857" stroke-width="6" stroke-linecap="round" opacity="0.6"/>
+  <line x1="168" y1="230" x2="220" y2="230" stroke="#047857" stroke-width="6" stroke-linecap="round" opacity="0.5"/>
+  <line x1="168" y1="260" x2="228" y2="260" stroke="#047857" stroke-width="6" stroke-linecap="round" opacity="0.4"/>
+  <line x1="168" y1="290" x2="210" y2="290" stroke="#047857" stroke-width="6" stroke-linecap="round" opacity="0.3"/>
+  
+  <!-- Knowledge lines on right page -->
+  <line x1="280" y1="200" x2="344" y2="200" stroke="#047857" stroke-width="6" stroke-linecap="round" opacity="0.6"/>
+  <line x1="280" y1="230" x2="332" y2="230" stroke="#047857" stroke-width="6" stroke-linecap="round" opacity="0.5"/>
+  <line x1="280" y1="260" x2="340" y2="260" stroke="#047857" stroke-width="6" stroke-linecap="round" opacity="0.4"/>
+  <line x1="280" y1="290" x2="322" y2="290" stroke="#047857" stroke-width="6" stroke-linecap="round" opacity="0.3"/>
+  
+  <!-- Rising star/sparkle - Quest Gold accent (reward symbol) -->
+  <path d="M256 100 L262 116 L280 116 L266 128 L272 146 L256 136 L240 146 L246 128 L232 116 L250 116 Z" fill="url(#goldGradient)"/>
+  
+  <!-- Small accent stars -->
+  <circle cx="140" cy="140" r="6" fill="url(#goldGradient)" opacity="0.8"/>
+  <circle cx="372" cy="140" r="4" fill="url(#goldGradient)" opacity="0.6"/>
+  <circle cx="120" cy="280" r="5" fill="url(#goldGradient)" opacity="0.5"/>
+  <circle cx="392" cy="300" r="5" fill="url(#goldGradient)" opacity="0.7"/>
+  
+  <!-- Subtle bottom curve representing growth/oasis -->
+  <path d="M160 380 Q256 420 352 380" fill="none" stroke="url(#goldGradient)" stroke-width="4" stroke-linecap="round" opacity="0.6"/>
+</svg>

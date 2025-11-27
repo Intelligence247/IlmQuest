@@ -1,6 +1,6 @@
-# minipay-hack-tutorMint
+# IlmQuest
 
-tutorMint for connecting tutor and student
+IlmQuest Learn-to-Earn
 
 A modern Celo blockchain application built with Next.js, TypeScript, and Turborepo.
 
