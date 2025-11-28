@@ -2,6 +2,7 @@
 
 import Link from "next/link"
 import { cn } from "@/lib/utils"
+import Image from "next/image"
 
 interface LogoProps {
   size?: "sm" | "md" | "lg" | "xl"
@@ -27,7 +28,8 @@ const textSizeClasses = {
 export function Logo({ size = "md", showText = true, href, className }: LogoProps) {
   const content = (
     <div className={cn("flex items-center gap-2", className)}>
-      <LogoIcon className={cn(sizeClasses[size])} />
+      {/* <LogoIcon className={cn(sizeClasses[size])} /> */}
+      <Image src={"/icon-dark-32x32.jpg"} alt="IlmQuest" width={96} height={96} />
       {showText && (
         <div className="flex flex-col">
           <span className={cn("font-heading font-bold text-brand-primary leading-tight", textSizeClasses[size])}>

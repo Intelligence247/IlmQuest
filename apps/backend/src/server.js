@@ -4,6 +4,8 @@ const morgan = require("morgan");
 const cors = require("cors");
 const env = require("./config/env");
 const verifyGameRouter = require("./routes/verifyGame");
+const publicQuestsRouter = require("./routes/publicQuests");
+const adminQuestsRouter = require("./routes/adminQuests");
 
 const app = express();
 
@@ -12,6 +14,14 @@ app.use(
   cors({
     origin: ["http://localhost:3000", "http://127.0.0.1:3000"],
     credentials: true,
+    allowedHeaders: [
+      "Content-Type",
+      "Authorization",
+      "x-admin-address",
+      "x-admin-signature",
+      "x-admin-message",
+    ],
+    exposedHeaders: ["x-admin-address", "x-admin-signature", "x-admin-message"],
   })
 );
 
@@ -29,8 +39,10 @@ app.get("/health", (req, res) => {
   res.json({ status: "ok" });
 });
 
-// Game verification + signing route
+// API routes
 app.use(verifyGameRouter);
+app.use(publicQuestsRouter);
+app.use(adminQuestsRouter);
 
 // Start server
 const port = env.PORT;

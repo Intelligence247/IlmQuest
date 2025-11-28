@@ -8,16 +8,17 @@ import { GameBoard } from "@/components/game/game-board"
 import { GameHeader } from "@/components/game/game-header"
 import { KnowledgeModal } from "@/components/game/knowledge-modal"
 import { VictoryScreen } from "@/components/game/victory-screen"
-import { questDecks } from "@/lib/game-data"
+import { useQuests } from "@/hooks/use-quests"
 
 function GameContent() {
   const params = useParams()
   const router = useRouter()
   const { isConnected, address } = useWallet()
   const { currentFact, isGameComplete, dismissFact } = useGame()
+  const { quests, loading: questsLoading } = useQuests()
 
   const levelId = params.levelId as string
-  const deck = useMemo(() => questDecks.find((d) => d.id === levelId), [levelId])
+  const deck = useMemo(() => quests.find((d) => d.id === levelId), [quests, levelId])
 
   // Only redirect if we're sure the wallet is not connected (after initial check)
   useEffect(() => {
@@ -31,7 +32,7 @@ function GameContent() {
     return () => clearTimeout(timer)
   }, [isConnected, address, router])
 
-  // Show loading while checking wallet connection
+  // Show loading while checking wallet connection or loading quests
   if (address === null && !isConnected) {
     return (
       <div className="min-h-screen bg-brand-surface flex items-center justify-center">
@@ -44,6 +45,17 @@ function GameContent() {
   }
 
   if (!isConnected) return null
+
+  if (questsLoading) {
+    return (
+      <div className="min-h-screen bg-brand-surface flex items-center justify-center">
+        <div className="text-center">
+          <div className="w-12 h-12 mx-auto mb-4 border-4 border-brand-primary border-t-transparent rounded-full animate-spin" />
+          <p className="text-ui-muted">Loading quest...</p>
+        </div>
+      </div>
+    )
+  }
 
   if (!deck || deck.isLocked) {
     return (

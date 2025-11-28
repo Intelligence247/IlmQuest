@@ -1,7 +1,7 @@
 const { Router } = require("express");
 const { parseEther, formatEther } = require("ethers");
 const env = require("../config/env");
-const { getGameSessionsCollection } = require("../db/mongo");
+const { getGameSessionsCollection, getQuestsCollection } = require("../db/mongo");
 const { generateNonce, signRewardAuthorization } = require("../services/signing");
 
 const router = Router();
@@ -11,27 +11,30 @@ const router = Router();
 // Replay (after 24h): Full reward (for revision/learning)
 const REPLAY_COOLDOWN_MS = 24 * 60 * 60 * 1000; // 24 hours in milliseconds
 
-// Reward amounts per quest (in cUSD, will be converted to wei)
-const REWARD_AMOUNTS = {
-  "celo-basics": "0.10",
-  "stablecoins-101": "0.15",
-  "defi-fundamentals": "0.20",
-  "security-essentials": "0.25",
-};
-
 /**
- * Get reward amount for a level ID
+ * Get reward amount for a level ID from database
  * @param {string} levelId - The level ID
- * @returns {bigint} Reward amount in wei
+ * @returns {Promise<bigint>} Reward amount in wei
  */
-function getRewardAmount(levelId) {
-  const amount = REWARD_AMOUNTS[levelId];
-  if (!amount) {
-    // Default to 0.1 cUSD if level not found
-    console.warn(`Unknown levelId: ${levelId}, using default reward 0.1 cUSD`);
+async function getRewardAmount(levelId) {
+  try {
+    const collection = await getQuestsCollection();
+    const quest = await collection.findOne({
+      id: levelId,
+      isActive: true,
+    });
+
+    if (!quest) {
+      console.warn(`Quest not found or inactive: ${levelId}, using default reward 0.1 cUSD`);
+      return parseEther("0.1");
+    }
+
+    return parseEther(quest.reward);
+  } catch (error) {
+    console.error(`Error fetching reward for quest ${levelId}:`, error);
+    // Fallback to default reward on error
     return parseEther("0.1");
   }
-  return parseEther(amount);
 }
 
 /**
@@ -98,7 +101,7 @@ router.post("/api/verify-game", async (req, res) => {
 
     // --- Generate Signature ---
     const nonce = generateNonce();
-    const rewardAmountWei = getRewardAmount(levelId);
+    const rewardAmountWei = await getRewardAmount(levelId);
 
     const signature = await signRewardAuthorization({
       vaultAddress: env.VAULT_ADDRESS,

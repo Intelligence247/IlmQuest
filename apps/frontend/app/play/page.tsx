@@ -6,12 +6,13 @@ import { useWallet } from "@/lib/wallet-context"
 import { Navbar } from "@/components/layout/navbar"
 import { BottomNav } from "@/components/layout/bottom-nav"
 import { QuestCard } from "@/components/quest/quest-card"
-import { questDecks } from "@/lib/game-data"
-import { Target } from "lucide-react"
+import { useQuests } from "@/hooks/use-quests"
+import { Target, Loader2 } from "lucide-react"
 
 function DashboardContent() {
   const { isConnected } = useWallet()
   const router = useRouter()
+  const { quests, loading } = useQuests()
 
   useEffect(() => {
     if (!isConnected) {
@@ -20,6 +21,17 @@ function DashboardContent() {
   }, [isConnected, router])
 
   if (!isConnected) return null
+
+  if (loading) {
+    return (
+      <div className="min-h-screen bg-brand-surface pb-20 flex items-center justify-center">
+        <div className="text-center">
+          <Loader2 className="w-8 h-8 animate-spin text-brand-primary mx-auto mb-4" />
+          <p className="text-ui-muted">Loading quests...</p>
+        </div>
+      </div>
+    )
+  }
 
   return (
     <div className="min-h-screen bg-brand-surface pb-20">
@@ -35,9 +47,15 @@ function DashboardContent() {
 
         {/* Quest Grid */}
         <div className="space-y-4">
-          {questDecks.map((deck) => (
-            <QuestCard key={deck.id} deck={deck} />
-          ))}
+          {quests.length === 0 ? (
+            <div className="text-center py-12 bg-white rounded-xl border border-ui-border">
+              <p className="text-ui-muted">No quests available at the moment.</p>
+            </div>
+          ) : (
+            quests.map((deck) => (
+              <QuestCard key={deck.id} deck={deck} />
+            ))
+          )}
         </div>
 
         {/* Info Banner */}

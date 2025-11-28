@@ -27,8 +27,22 @@ async function getGameSessionsCollection() {
   return collection;
 }
 
+async function getQuestsCollection() {
+  const mongo = await getMongoClient();
+  const db = mongo.db("ilmquest");
+  const collection = db.collection("Quests");
+
+  // Create indexes for efficient queries
+  await collection.createIndex({ id: 1 }, { unique: true }); // Unique quest ID
+  await collection.createIndex({ isActive: 1, isLocked: 1 }); // For filtering active quests
+  await collection.createIndex({ createdAt: -1 }); // For sorting
+
+  return collection;
+}
+
 module.exports = {
   getMongoClient,
   getGameSessionsCollection,
+  getQuestsCollection,
 };
 

@@ -4,6 +4,7 @@ import Link from "next/link"
 import { ArrowLeft, BookOpen, Shield, Sparkles, Heart, ExternalLink } from "lucide-react"
 import { BottomNav } from "@/components/layout/bottom-nav"
 import { WalletProvider } from "@/lib/wallet-context"
+import Image from "next/image"
 
 function AboutContent() {
   return (
@@ -26,7 +27,13 @@ function AboutContent() {
         {/* Logo Section */}
         <div className="text-center mb-8">
           <div className="w-20 h-20 mx-auto mb-4 rounded-2xl bg-gradient-to-br from-brand-primary to-teal-800 flex items-center justify-center shadow-lg">
-            <BookOpen className="w-10 h-10 text-white" />
+            {/* <BookOpen className="w-10 h-10 text-white" /> */}
+            <Image 
+              src="/apple-icon.jpg"
+              alt="IlmQuest"
+              width={80}
+              height={80}
+            />
           </div>
           <h2 className="font-heading font-bold text-2xl text-brand-primary">IlmQuest</h2>
           <p className="text-ui-muted mt-1">Learn Crypto. Earn Crypto.</p>

@@ -5,6 +5,7 @@ import Link from "next/link"
 import { useWallet } from "@/lib/wallet-context"
 import { BalanceDisplay } from "@/components/wallet/balance-display"
 import { LogoIcon } from "@/components/brand/logo"
+import Image from "next/image"
 
 export function Navbar() {
   const { disconnect } = useWallet()
@@ -15,7 +16,8 @@ export function Navbar() {
         {/* Top row - Logo, profile, and logout */}
         <div className="flex items-center justify-between mb-3">
           <Link href="/play" className="flex items-center gap-2">
-            <LogoIcon className="w-8 h-8" />
+            {/* <LogoIcon className="w-8 h-8" /> */}
+            <Image src={"/icon-dark-32x32.jpg"} alt="IlmQuest" width={32} height={32} />
             <span className="font-heading font-bold text-lg text-brand-primary">IlmQuest</span>
           </Link>
           <div className="flex items-center gap-1">
