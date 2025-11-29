@@ -103,6 +103,14 @@ function LandingContent() {
       {/* Bottom CTA */}
       <div className="sticky bottom-0 p-6 bg-gradient-to-t from-brand-surface via-brand-surface to-transparent">
         <ConnectButton />
+        {/* Mobile wallet instructions */}
+        {typeof window !== "undefined" && /iPhone|iPad|iPod|Android/i.test(navigator.userAgent) && !window.ethereum && (
+          <div className="mt-4 p-3 bg-blue-50 border border-blue-200 rounded-lg">
+            <p className="text-xs text-blue-800 text-center">
+              <strong>On Mobile?</strong> Use Opera Browser with MiniPay or MetaMask Mobile app
+            </p>
+          </div>
+        )}
         <div className="flex items-center justify-center gap-2 mt-4">
           <div className="w-2 h-2 rounded-full bg-brand-primary" />
           <span className="text-xs text-ui-muted font-medium">Built on Celo</span>

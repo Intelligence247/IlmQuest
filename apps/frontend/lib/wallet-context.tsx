@@ -68,8 +68,38 @@ export function WalletProvider({ children }: { children: ReactNode }) {
   }, [])
 
   const connect = useCallback(async () => {
-    if (typeof window === "undefined" || !window.ethereum) {
-      alert("Please install MiniPay or MetaMask to connect your wallet")
+    if (typeof window === "undefined") {
+      return
+    }
+
+    // Check for mobile devices
+    const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent)
+    const isOpera = /OPR|Opera/i.test(navigator.userAgent)
+
+    // Check for wallet providers
+    if (!window.ethereum) {
+      if (isMobile) {
+        // Mobile-specific instructions
+        let message = "To connect on mobile:\n\n"
+        
+        if (isOpera) {
+          message += "✅ You're using Opera! MiniPay should work.\n"
+          message += "Make sure MiniPay is enabled in Opera settings.\n"
+          message += "If it's not working, try refreshing the page."
+        } else {
+          message += "You need a wallet app:\n\n"
+          message += "Option 1: Use Opera Browser with MiniPay (recommended for Celo)\n"
+          message += "Option 2: Install MetaMask Mobile app\n\n"
+          message += "Click OK to open MetaMask download page"
+          
+          const openMetaMask = confirm(message)
+          if (openMetaMask) {
+            window.open("https://metamask.io/download/", "_blank")
+          }
+        }
+      } else {
+        alert("Please install MiniPay or MetaMask extension to connect your wallet")
+      }
       return
     }
 
