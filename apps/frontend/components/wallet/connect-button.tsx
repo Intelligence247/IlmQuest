@@ -20,7 +20,7 @@ export function ConnectButton() {
       ) : (
         <>
           <Wallet className="w-5 h-5" />
-          <span>Connect MiniPay</span>
+          <span>Connect Wallet</span>
         </>
       )}
     </button>
