@@ -117,7 +117,7 @@ export function WalletProvider({ children }: { children: ReactNode }) {
 
       const userAddress = accounts[0]
       setAddress(userAddress)
-      setIsConnected(true)
+    setIsConnected(true)
 
       // Fetch token balance (cUSD)
       try {
@@ -131,7 +131,7 @@ export function WalletProvider({ children }: { children: ReactNode }) {
       console.error("Error connecting wallet:", error)
       alert(error instanceof Error ? error.message : "Failed to connect wallet")
     } finally {
-      setIsConnecting(false)
+    setIsConnecting(false)
     }
   }, [])
 

@@ -35,9 +35,9 @@ export function BalanceDisplay() {
             className={`w-4 h-4 text-brand-primary ${isRefreshing ? "animate-spin" : ""}`}
           />
         </button>
-        <div className="flex items-center gap-1">
-          <span className="text-lg font-heading font-bold text-brand-accent">{balance}</span>
-          <span className="text-sm font-medium text-ui-muted">cUSD</span>
+      <div className="flex items-center gap-1">
+        <span className="text-lg font-heading font-bold text-brand-accent">{balance}</span>
+        <span className="text-sm font-medium text-ui-muted">cUSD</span>
         </div>
       </div>
     </div>
