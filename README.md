@@ -23,19 +23,19 @@ Unlike "Play-to-Earn" games that often rely on ponzi-nomics or gambling mechanic
 ## 📸 Application Screenshots
 
 ### Landing Page
-![Landing Page](./screenshots/landing-page.png)
+![Landing Page](./screenshots/landing-page2.png)
 *Welcome screen with wallet connection. Users can connect their MiniPay or MetaMask wallet to get started.*
 
 ### Quest Dashboard
-![Quest Dashboard](./screenshots/quest-dashboard.png)
+![Quest Dashboard](./screenshots/quest-dashboard2.png)
 *Available quests displayed with difficulty levels and rewards. Users can see their balance and select a quest to play.*
 
 ### Game in Progress
-![Game in Progress](./screenshots/game-in-progress.png)
+![Game in Progress](./screenshots/game-in-progress2.png)
 *Memory matching game interface. Users flip cards to match crypto concepts with their definitions.*
 
 ### Knowledge Modal
-![Knowledge Modal](./screenshots/knowledge-modal.png)
+![Knowledge Modal](./screenshots/knowledge-modal2.png)
 *Educational fact appears when a pair is matched. Users must acknowledge the fact to continue learning.*
 
 ### Victory Screen
@@ -43,7 +43,7 @@ Unlike "Play-to-Earn" games that often rely on ponzi-nomics or gambling mechanic
 *Quest completion screen showing stats (moves, time) and reward amount. Users can claim their cUSD reward here.*
 
 ### Reward Claim
-![Reward Claim](./screenshots/reward-claim.png)
+![Reward Claim](./screenshots/reward-claim2.png)
 *Transaction confirmation and success screen. Shows transaction hash and link to block explorer.*
 
 ### Profile Page
@@ -151,7 +151,7 @@ Unlike "Play-to-Earn" games that often rely on ponzi-nomics or gambling mechanic
 
 1. **Clone the repository**
    ```bash
-   git clone https://github.com/YOUR_GITHUB_USERNAME/IlmQuest.git
+   git clone https://github.com/Intelligence247/IlmQuest.git
    cd IlmQuest
    ```
 
