@@ -12,7 +12,7 @@ const app = express();
 // CORS - Allow requests from frontend
 app.use(
   cors({
-    origin: ["http://localhost:3000", "http://127.0.0.1:3000", "https://ilmquest-app.vercel.app", "https://nonpalliatively-unbickered-brent.ngrok-free.dev"],
+    origin: ["http://localhost:3000", "http://127.0.0.1:3000", "https://ilmquest-app.vercel.app"],
     credentials: true,
     allowedHeaders: [
       "Content-Type",

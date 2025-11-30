@@ -44,7 +44,7 @@ export function QuestCard({ deck }: QuestCardProps) {
       <div className="flex items-start justify-between">
         <div className="flex-1">
           <div className="flex items-center gap-2">
-            <h3 className="font-heading font-semibold text-lg text-ui-text">{deck.name}</h3>
+          <h3 className="font-heading font-semibold text-lg text-ui-text">{deck.name}</h3>
             {completed && (
               <CheckCircle2 className="w-5 h-5 text-brand-secondary shrink-0" />
             )}

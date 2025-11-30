@@ -25,8 +25,8 @@ function GameContent() {
     // Wait a bit for wallet to initialize, then check
     const timer = setTimeout(() => {
       if (!isConnected && address === null) {
-        router.push("/")
-      }
+      router.push("/")
+    }
     }, 500)
 
     return () => clearTimeout(timer)
@@ -90,8 +90,8 @@ function GameContent() {
 
 export default function GamePage() {
   return (
-    <GameProvider>
-      <GameContent />
-    </GameProvider>
+      <GameProvider>
+        <GameContent />
+      </GameProvider>
   )
 }

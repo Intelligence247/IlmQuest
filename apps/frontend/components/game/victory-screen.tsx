@@ -159,7 +159,7 @@ export function VictoryScreen({ deck }: VictoryScreenProps) {
         await refreshBalance()
       }, 3000)
       
-      setClaimState("success")
+    setClaimState("success")
     } catch (err) {
       console.error("Error claiming reward:", err)
       setError(err instanceof Error ? err.message : "Failed to claim reward. Please try again.")

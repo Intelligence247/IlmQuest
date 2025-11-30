@@ -136,134 +136,21 @@ export async function claimReward(
   // Convert rewardAmount to BigInt
   const rewardAmountBigInt = BigInt(rewardAmount)
 
-  // Check if user has sufficient balance in fee currency for gas
-  // This helps prevent "divide by zero" errors that can occur when balance is too low
-  try {
-    const tokenContract = new ethers.Contract(
-      REWARD_TOKEN_ADDRESS,
-      [
-        {
-          constant: true,
-          inputs: [{ name: "_owner", type: "address" }],
-          name: "balanceOf",
-          outputs: [{ name: "balance", type: "uint256" }],
-          type: "function",
-        },
-      ],
-      provider
-    )
-    const balance = await tokenContract.balanceOf(userAddress)
-    const minBalanceForGas = BigInt(1000000000000000) // 0.001 cUSD minimum for gas
-    
-    if (balance < minBalanceForGas) {
-      console.warn("User balance might be too low for gas fees:", balance.toString())
-      // Continue anyway - the transaction might still work
-    }
-  } catch (balanceError) {
-    console.warn("Could not check balance:", balanceError)
-    // Continue anyway
-  }
-
-  // For MiniPay compatibility, use a fixed gas limit instead of estimation
-  // Gas estimation with feeCurrency can cause "divide by zero" errors in some wallets
-  const GAS_LIMIT = BigInt(300000) // Safe gas limit for claimReward function
-
-  // Prepare transaction parameters
-  // For Celo fee currency abstraction, we only need to specify feeCurrency
-  // DO NOT set gasPrice, maxFeePerGas, or maxPriorityFeePerGas - Celo handles these automatically
-  // Also, some wallets (like MiniPay) may have issues if we set gasLimit explicitly
-  // Try without gasLimit first, then with it if needed
-  const txOverrides: any = {
-    feeCurrency: REWARD_TOKEN_ADDRESS,
-  }
-
-  console.log("Transaction parameters:", {
+  // Call claimReward with fee currency abstraction
+  // On Celo, we use the overrides to specify feeCurrency
+  const tx = await vaultContract.claimReward(
     levelId,
-    rewardAmount: rewardAmountBigInt.toString(),
-    nonce: nonceBytes32,
-    feeCurrency: REWARD_TOKEN_ADDRESS,
-  })
-
-  try {
-    // Call claimReward with fee currency abstraction
-    // On Celo, we use the overrides to specify feeCurrency
-    const tx = await vaultContract.claimReward(
-      levelId,
-      rewardAmountBigInt,
-      nonceBytes32,
-      signature,
-      txOverrides
-    )
-
-    console.log("Transaction sent, waiting for confirmation...")
-    
-    // Wait for transaction to be mined
-    await tx.wait()
-
-    return tx.hash
-  } catch (error: any) {
-    console.error("Transaction error details:", {
-      error,
-      message: error?.message,
-      code: error?.code,
-      data: error?.data,
-    })
-
-    // If the error is related to feeCurrency or gas estimation, try different approaches
-    if (
-      error?.message?.includes("divide by zero") ||
-      error?.message?.includes("BigInteger") ||
-      error?.code === -32603
-    ) {
-      console.warn("Fee currency or gas estimation error detected, trying alternative approaches...")
-      
-      // Try 1: With explicit gasLimit
-      try {
-        console.log("Attempting with explicit gasLimit...")
-        const txWithGas = await vaultContract.claimReward(
-          levelId,
-          rewardAmountBigInt,
-          nonceBytes32,
-          signature,
-          {
-            feeCurrency: REWARD_TOKEN_ADDRESS,
-            gasLimit: GAS_LIMIT,
-          }
-        )
-        await txWithGas.wait()
-        console.log("Transaction succeeded with explicit gasLimit")
-        return txWithGas.hash
-      } catch (gasLimitError) {
-        console.warn("Transaction with gasLimit failed:", gasLimitError)
-        
-        // Try 2: Without feeCurrency (user pays in CELO - not ideal but works)
-        try {
-          console.warn("Trying without feeCurrency (will pay gas in CELO)...")
-          const fallbackTx = await vaultContract.claimReward(
-            levelId,
-            rewardAmountBigInt,
-            nonceBytes32,
-            signature,
-            {
-              gasLimit: GAS_LIMIT,
-            }
-          )
-          
-          console.warn("Transaction succeeded without feeCurrency (paid in CELO)")
-          await fallbackTx.wait()
-          return fallbackTx.hash
-        } catch (fallbackError) {
-          console.error("All transaction attempts failed:", fallbackError)
-          throw new Error(
-            `Transaction failed due to wallet compatibility issue. ` +
-            `Error: ${error.message}. ` +
-            `Please ensure you have sufficient cUSD balance for gas fees, or try using MetaMask instead of MiniPay.`
-          )
-        }
-      }
+    rewardAmountBigInt,
+    nonceBytes32,
+    signature,
+    {
+      // Fee currency abstraction - pay gas in cUSD
+      feeCurrency: REWARD_TOKEN_ADDRESS,
     }
+  )
 
-    // Re-throw the original error if it's not a feeCurrency issue
-    throw error
-  }
+  // Wait for transaction to be mined
+  await tx.wait()
+
+  return tx.hash
 }

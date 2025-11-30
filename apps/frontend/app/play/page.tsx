@@ -53,7 +53,7 @@ function DashboardContent() {
             </div>
           ) : (
             quests.map((deck) => (
-              <QuestCard key={deck.id} deck={deck} />
+            <QuestCard key={deck.id} deck={deck} />
             ))
           )}
         </div>
