@@ -457,9 +457,9 @@ MIT License - see LICENSE file for details
 
 ## 📞 Contact
 
-- **GitHub:** [YOUR_GITHUB_USERNAME](https://github.com/YOUR_GITHUB_USERNAME)
-- **Email:** YOUR_EMAIL@example.com
-- **Twitter:** [@YOUR_TWITTER_HANDLE](https://twitter.com/YOUR_TWITTER_HANDLE)
+- **GitHub:** [Intelligence247](https://github.com/Intelligence247)
+- **Email:** uthmanabdullahi2020@gmail.com
+- **Twitter:** [@I_n_telligence](https://twitter.com/I_n_telligence)
 - **Live Demo:** https://ilmquest-app.vercel.app
 
 ---
