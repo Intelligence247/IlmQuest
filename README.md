@@ -3,7 +3,7 @@
 ### *Turning Knowledge into Capital on the Celo Blockchain*
 
 [![Built with Next.js](https://img.shields.io/badge/Built%20with-Next.js-black)](https://nextjs.org/)
-[![Celo Network](https://img.shields.io/badge/Celo-Sepolia-yellow)](https://docs.celo.org/)
+[![Celo Network](https://img.shields.io/badge/Celo-Mainnet-yellow)](https://docs.celo.org/)
 [![License](https://img.shields.io/badge/License-MIT-blue)](LICENSE)
 
 **Live Demo:** [https://ilmquest-app.vercel.app](https://ilmquest-app.vercel.app)
@@ -167,7 +167,9 @@ Unlike "Play-to-Earn" games that often rely on ponzi-nomics or gambling mechanic
    MONGODB_URI=your_mongodb_connection_string
    ADMIN_PRIVATE_KEY=0x...
    VAULT_ADDRESS=0x9857b9d8F49C035Df7e56397870A0a16d851e371
-   CHAIN_ID=11142220
+   CHAIN_ID=42220
+   VAULT_ADDRESS=0xYourDeployedVaultAddress
+   REWARD_TOKEN_ADDRESS=0x765DE816845861e75A25fCA122bb6898B8B1282a
    ADMIN_WALLETS=0xYourAdminWalletAddress
    PORT=4000
    ```
@@ -250,7 +252,7 @@ IlmQuest/
 ### Smart Contracts
 - **Language:** Solidity
 - **Framework:** Hardhat
-- **Network:** Celo Sepolia Testnet
+- **Network:** Celo Mainnet
 - **Standards:** ERC20, EIP-712
 - **Libraries:** OpenZeppelin
 
@@ -270,7 +272,8 @@ pnpm lint         # Lint all code
 cd apps/contracts
 pnpm compile      # Compile smart contracts
 pnpm test         # Run contract tests
-pnpm deploy:sepolia  # Deploy to Celo Sepolia
+pnpm deploy:mainnet  # Deploy to Celo Mainnet
+pnpm fund:vault:mainnet  # Fund vault with cUSD
 ```
 
 ### Backend
@@ -320,23 +323,23 @@ User Action → Frontend → Backend API → MongoDB → Smart Contract → Bloc
 
 ## 🔐 Smart Contracts
 
-### Deployed Contracts (Celo Sepolia)
+### Deployed Contracts (Celo Mainnet)
 
-- **JualahVault:** `0x9857b9d8F49C035Df7e56397870A0a16d851e371`
+- **JualahVault:** `0x980DC8695F6D30A3b20770Ad42A5458784CBeA90`
   - Handles reward distribution
   - Verifies EIP-712 signatures
   - Implements replay protection (nonce tracking)
   - ERC20 token transfers
 
-- **MockERC20 (Reward Token):** `0x980DC8695F6D30A3b20770Ad42A5458784CBeA90`
-  - Test token for rewards (cUSD equivalent)
-  - Used for Fee Currency Abstraction
+- **cUSD (Reward Token):** `0x765DE816845861e75A25fCA122bb6898B8B1282a`
+  - Real cUSD token on Celo Mainnet
+  - Used for rewards and Fee Currency Abstraction
 
-**Block Explorer:** https://celo-sepolia.blockscout.com
+**Block Explorer:** https://celoscan.io
 
 **View Contracts:**
-- [JualahVault on Blockscout](https://celo-sepolia.blockscout.com/address/0x9857b9d8F49C035Df7e56397870A0a16d851e371)
-- [MockERC20 on Blockscout](https://celo-sepolia.blockscout.com/address/0x980DC8695F6D30A3b20770Ad42A5458784CBeA90)
+- [JualahVault on Celoscan](https://celoscan.io/address/0x980DC8695F6D30A3b20770Ad42A5458784CBeA90)
+- [cUSD on Celoscan](https://celoscan.io/address/0x765DE816845861e75A25fCA122bb6898B8B1282a)
 
 ---
 
@@ -419,7 +422,9 @@ vercel deploy
 3. Deploy
 
 ### Smart Contracts
-Already deployed to Celo Sepolia testnet. See contract addresses above.
+Deployed to Celo Mainnet. See contract addresses above.
+
+**Deployment Instructions:** See [MAINNET_DEPLOYMENT_STEPS.md](./MAINNET_DEPLOYMENT_STEPS.md)
 
 ---
 
