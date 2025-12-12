@@ -6,13 +6,13 @@
 export const BACKEND_URL =
   process.env.NEXT_PUBLIC_BACKEND_URL || "http://localhost:4000";
 
-// Contract addresses on Celo Sepolia
-export const VAULT_ADDRESS = "0x9857b9d8F49C035Df7e56397870A0a16d851e371";
-export const REWARD_TOKEN_ADDRESS = "0x980DC8695F6D30A3b20770Ad42A5458784CBeA90";
+// Contract addresses on Celo Mainnet
+export const VAULT_ADDRESS = "0x980DC8695F6D30A3b20770Ad42A5458784CBeA90";
+export const REWARD_TOKEN_ADDRESS = "0x765DE816845861e75A25fCA122bb6898B8B1282a"; // Real cUSD on mainnet
 
-// Chain ID for Celo Sepolia
-export const CHAIN_ID = 11142220;
+// Chain ID for Celo Mainnet
+export const CHAIN_ID = 42220;
 
 // Block explorer URL
-export const BLOCK_EXPLORER_URL = "https://celo-sepolia.blockscout.com";
+export const BLOCK_EXPLORER_URL = "https://celoscan.io";
 

@@ -10,9 +10,11 @@
     "deploy": "hardhat ignition deploy ignition/modules/JualahVault.ts",
     "deploy:alfajores": "hardhat ignition deploy ignition/modules/JualahVault.ts --network alfajores",
     "deploy:sepolia": "hardhat ignition deploy ignition/modules/JualahVault.ts --network sepolia --parameters",
-    "deploy:celo": "hardhat ignition deploy ignition/modules/JualahVault.ts --network celo",
+    "deploy:celo": "hardhat ignition deploy ignition/modules/JualahVault.ts --network celo --parameters",
+    "deploy:mainnet": "hardhat ignition deploy ignition/modules/JualahVault.ts --network celo",
     "deploy:mock-token:sepolia": "hardhat ignition deploy ignition/modules/MockERC20.ts --network sepolia",
     "fund:vault": "node scripts/fundVault.js",
+    "fund:vault:mainnet": "node scripts/fundVaultMainnet.js",
     "verify": "hardhat verify",
     "clean": "hardhat clean",
     "typechain": "hardhat typechain"
