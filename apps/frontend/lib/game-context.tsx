@@ -110,9 +110,7 @@ export function GameProvider({ children }: { children: ReactNode }) {
           setCurrentFact(newMatchedPair)
           setFlippedCards([])
 
-          if (matchedPairs.length + 1 === Object.keys(pairFacts).length) {
-            setIsGameComplete(true)
-          }
+
         } else {
           setCards((prev) => prev.map((c) => (newFlippedCards.includes(c.id) ? { ...c, isMismatched: true } : c)))
 
@@ -132,7 +130,10 @@ export function GameProvider({ children }: { children: ReactNode }) {
 
   const dismissFact = useCallback(() => {
     setCurrentFact(null)
-  }, [])
+    if (matchedPairs.length === Object.keys(pairFacts).length) {
+      setIsGameComplete(true)
+    }
+  }, [matchedPairs.length, pairFacts])
 
   const resetGame = useCallback(() => {
     setCards((prev) => {
